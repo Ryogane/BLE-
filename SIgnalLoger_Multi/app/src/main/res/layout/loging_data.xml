@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView_memo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="冷蔵庫開閉"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_Stability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingBottom="6dp"
+            android:text="安定"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="状態："
+            android:textAlignment="textEnd"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="ネガティブ"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_rssi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="64sp" />
+
+</LinearLayout>
