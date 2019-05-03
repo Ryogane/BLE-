@@ -260,7 +260,7 @@ def create_lowpath_data_graph(relative_time, rssi, save_name):
 def main():
 
     # csvファイルを読み込む
-    time, rssi_raw = read_csv_value('./機種比較nexus6p.csv')
+    time, rssi_raw = read_csv_value('./機種比較xperiaxz2.csv')
 
     # データの正規化(0~1)を行う
     rssi = min_max_normalization(rssi_raw)
