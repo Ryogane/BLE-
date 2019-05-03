@@ -207,7 +207,7 @@ def plot_negaposi(t, rssi, stable_time, interval, negaposi, save_name):
             #elif interval2 > stable_time[i][-1] - stable_time[i][0] > interval and negaposi[i] == 1:
             plt.fill_between([stable_time[i][0], stable_time[i][-1]], [0,0], [1,1], facecolor='g', alpha=0.2)
 
-    plt.title('１回目', fontsize=18)  # グラフタイトル
+    plt.title('金庫の状態推定結果', fontsize=18)  # グラフタイトル
     plt.xlabel('time(sec)', fontsize=18)
     plt.ylabel('signal', fontsize=18)
     #plt.xticks(np.arange(0, 120, 10))  # グラフのメモリ間隔の設定
@@ -245,14 +245,24 @@ def create_lowpath_data_graph(relative_time, rssi, save_name):
     """
     x = np.array(relative_time)
     y = np.array(rssi)
-    fig = plt.figure(figsize=(12, 6))
+    fig = plt.figure(figsize=(12, 3))
     ax = fig.add_subplot(111)
     plt.plot(x, y, color="blue")                             # グラフ線の設定と描画
-    plt.title("金庫開閉時の電波強度変化", fontsize=18)      # グラフタイトル
+    plt.title("正解ラベル", fontsize=18)      # グラフタイトル
     plt.xlabel("time(sec)", fontsize=18)                      # x軸のラベル
     plt.ylabel("signal", fontsize=18)                        # y軸のラベル
     #plt.xticks(np.arange(0, 120, 10))  # グラフのメモリ間隔の設定
     #ax.xaxis.grid(linestyle='--', lw=1, color='black')
+
+    # 正解ラベルをつける
+    true_label = [33,53, 143,163, 253,273]
+    for i in range(0,len(true_label),2):
+        plt.fill_between([true_label[i], true_label[i+1]], [0,0], [1,1], facecolor='r', alpha=0.6)
+
+    true_label2 = [0,33, 53,143, 163,253, 273,298]
+    for i in range(0,len(true_label2),2):
+        plt.fill_between([true_label2[i], true_label2[i+1]], [0,0], [1,1], facecolor='g', alpha=0.2)
+
     plt.tight_layout()
     plt.savefig(save_name, format='png', dpi=300)
 
