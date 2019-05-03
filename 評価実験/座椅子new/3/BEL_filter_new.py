@@ -191,18 +191,18 @@ def plot_negaposi(t, rssi, stable_time, interval, negaposi, save_name):
 
     interval2 = interval+2
 
-    fig = plt.figure(figsize=(12, 6))
+    fig = plt.figure(figsize=(12, 3))
     ax = fig.add_subplot(111)
 
     # ラベル用
-    plt.fill_between([0,0], [0,0], [1,1], facecolor='r', alpha=0.2, label='ポジティブ')
+    plt.fill_between([0,0], [0,0], [1,1], facecolor='r', alpha=0.6, label='ポジティブ')
     plt.fill_between([0,0], [0,0], [1,1], facecolor='g', alpha=0.2, label='ネガティブ')
 
     # 結果を元に推定箇所に色を塗る
     for i in range(len(stable_time)):
         if stable_time[i][-1] - stable_time[i][0] > interval and negaposi[i] == 0:
             #if interval2 > stable_time[i][-1] - stable_time[i][0] > interval and negaposi[i] == 0:
-            plt.fill_between([stable_time[i][0], stable_time[i][-1]], [0,0], [1,1], facecolor='r', alpha=0.2)
+            plt.fill_between([stable_time[i][0], stable_time[i][-1]], [0,0], [1,1], facecolor='r', alpha=0.6)
         elif stable_time[i][-1] - stable_time[i][0] > interval and negaposi[i] == 1:
             #elif interval2 > stable_time[i][-1] - stable_time[i][0] > interval and negaposi[i] == 1:
             plt.fill_between([stable_time[i][0], stable_time[i][-1]], [0,0], [1,1], facecolor='g', alpha=0.2)
@@ -233,6 +233,8 @@ def create_original_data_graph(relative_time, rssi, save_name):
     plt.title("ローパスフィルタ適用前", fontsize=18)            # グラフタイトル
     plt.xlabel('time(sec)', fontsize=18)        # x軸のラベル
     plt.ylabel('signal', fontsize=18)           # x軸のラベル
+    plt.xticks(np.arange(0, 500, 10))  # グラフのメモリ間隔の設定
+    ax.xaxis.grid(linestyle='--', lw=1, color='black')
     plt.tight_layout()
     plt.savefig(save_name, format='png', dpi=300)
 
@@ -245,14 +247,24 @@ def create_lowpath_data_graph(relative_time, rssi, save_name):
     """
     x = np.array(relative_time)
     y = np.array(rssi)
-    fig = plt.figure(figsize=(12, 6))
+    fig = plt.figure(figsize=(12, 3))
     ax = fig.add_subplot(111)
     plt.plot(x, y, color="blue")                             # グラフ線の設定と描画
-    plt.title("ローパスフィルタ適用後", fontsize=18)      # グラフタイトル
+    plt.title("正解ラベル", fontsize=18)      # グラフタイトル
     plt.xlabel("time(sec)", fontsize=18)                      # x軸のラベル
     plt.ylabel("signal", fontsize=18)                        # y軸のラベル
     #plt.xticks(np.arange(0, 120, 10))  # グラフのメモリ間隔の設定
     #ax.xaxis.grid(linestyle='--', lw=1, color='black')
+
+    # 正解ラベルをつける
+    true_label = [62,90, 243,303, 393,422]
+    for i in range(0,len(true_label),2):
+        plt.fill_between([true_label[i], true_label[i+1]], [0,0], [1,1], facecolor='g', alpha=0.2)
+
+    true_label2 = [0,62, 90,243, 303,393, 422,455]
+    for i in range(0,len(true_label2),2):
+        plt.fill_between([true_label2[i], true_label2[i+1]], [0,0], [1,1], facecolor='r', alpha=0.6)
+
     plt.tight_layout()
     plt.savefig(save_name, format='png', dpi=300)
 
@@ -298,7 +310,7 @@ def main():
         time[i] = time[i + 1] - time[0]
 
     # ローパスフィルタをかけたデータを書き出す
-    # write_csv('./move_ave_rssi.csv', time, rssi)
+    write_csv('./move_ave_rssi.csv', time, rssi)
 
     # ローパスフィルタをかけたグラフを保存
     create_lowpath_data_graph(time, convo, move_ave_graph_name)

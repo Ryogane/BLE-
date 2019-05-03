@@ -411,7 +411,30 @@ Bluetoothのセンサ精度は端末毎に異なるため, 実験に用いる端
 \end{table}
 
 \subsection{座椅子の着座における推定精度の測定}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=8cm]{chair.png}
+    \caption{座椅子の状態推定結果グラフ}
+    \label{chair_graph}
+\end{figure}
+
+\begin{table}[htb]
+    \begin{center}
+        \caption{金庫の開閉における状態推定精度}
+        \label{chair_fig}
+        \begin{tabular}{|c|c|c|c|} \hline
+        試行回数 & 正答率 & 正解数 & 不正解数 \\ \hline
+        1 & 100％ & 7 & 0 \\ \hline
+        2 & 100％ & 7 & 0 \\ \hline
+        2 & 71.4％ & 5 & 2 \\ \hline \hline
+        累計正解率 & \multicolumn{3}{c|}{90.4％} \\ \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
 図N　、　図M　のようにセンサと受信機を設置して評価実験を行った.
+推定結果を図\ref{chair_graph}に, 正解率の一覧を表\ref{chair_fig}に示す.
 座椅子は図Kに赤丸で示したように　G箇所　の場所に移動させて座って立ってを行い，状態推定が可能かどうか確かめた.
 推定結果を　図R　に，正解率の一覧を　表W　に示す.
 図R　は白色の部bンは安定センシング区間ではない状態を，緑色の部分はネガティブな状態(人が座っている状態)を，赤色の部分はポジティブな状態(人が座っていない状態)を示している.
