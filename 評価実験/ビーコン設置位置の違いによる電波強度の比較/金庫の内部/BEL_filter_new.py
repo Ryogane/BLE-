@@ -227,10 +227,10 @@ def create_original_data_graph(relative_time, rssi, save_name):
     """
     x = np.array(relative_time)
     y = np.array(rssi)
-    fig = plt.figure(figsize=(12, 6))
+    fig = plt.figure(figsize=(12, 3))
     ax = fig.add_subplot(111)
     plt.plot(x, y, color="blue")                              # グラフ線の設定と描画    marker="o"
-    plt.title("rssi値", fontsize=18)            # グラフタイトル
+    plt.title("BLEビーコンを金庫の内部に設置した時の波形", fontsize=18)            # グラフタイトル
     plt.xlabel('time(sec)', fontsize=18)        # x軸のラベル
     plt.ylabel('signal', fontsize=18)           # x軸のラベル
     plt.xticks(np.arange(0, 110, 10))           # グラフのメモリ間隔の設定
